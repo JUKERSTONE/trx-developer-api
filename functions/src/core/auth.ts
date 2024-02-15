@@ -1,12 +1,12 @@
 // import { fbFirestore, fbAuthentication } from "./firebase";
 
 export const auth = (req: any, res: any, next: any) => {
-  let idToken;
+  // let idToken;
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer ")
   ) {
-    idToken = req.headers.authorization.split("Bearer ")[1];
+    // idToken = req.headers.authorization.split("Bearer ")[1];
   } else {
     console.error("No token found");
     return res.status(403).json({ error: "Unauthorized" });

@@ -29,7 +29,9 @@ export const handleTRXRadio = async (req: Request, res: Response) => {
     // console.log(`Scheduling task for activityId: ${activityId}`);
     await client.createTask({ parent: queuePath, task });
     console.log("Task scheduled successfully");
+    res.json({ message: "Task scheduled successfully" });
   } catch (error) {
+    res.status(500).json({ message: "Task scheduling failed" });
     // console.error(`Error scheduling task for activityId: ${activityId}`, error);
   }
 };

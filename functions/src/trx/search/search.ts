@@ -8,11 +8,14 @@ export const handleTRXSearch = async (req: Request, res: Response) => {
   const { query } = req.params;
   let results: any[] = [];
   const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
-  const index = client.initIndex("TRX");
+  const index = client.initIndex("trx");
 
-  index.search(query).then(({ hits }) => {
+  await index.search(query).then(({ hits }) => {
     results = [];
-    results.push(hits);
+    hits.forEach((hit: any) => {
+      const trak = JSON.parse(hit.serialized_trak);
+      results.push(trak.TRAK);
+    });
   });
 
   return res.json({ results });
