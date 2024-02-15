@@ -1,23 +1,19 @@
 import { Request, Response } from "express";
-import { getTRXQuery, getWebQuery, rankResultsQuery } from "./utils";
+import algoliasearch from "algoliasearch";
+
+export const ALGOLIA_APP_ID = "ZBCBTRK5UR";
+export const ALGOLIA_API_KEY = "d7a1550f25a9017579ccd3eca0c5a1ac";
 
 export const handleTRXSearch = async (req: Request, res: Response) => {
   const { query } = req.params;
+  let results: any[] = [];
+  const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
+  const index = client.initIndex("TRX");
 
-  const localResults = await getTRXQuery({ query });
-  const webResults = await getWebQuery({ query });
-
-  const results = await rankResultsQuery({ localResults, webResults });
+  index.search(query).then(({ hits }) => {
+    results = [];
+    results.push(hits);
+  });
 
   return res.json({ results });
-
-  /**
-   * 1.
-   *  a. Search TRX, trx-04
-   *    i. Remove duplicates.
-   *    ii. Order by relevance.
-   *  b. Web flow
-   *  c. Order a & b by relevance.
-   *  d. Return list of TRX.
-   */
 };
