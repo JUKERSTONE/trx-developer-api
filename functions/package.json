@@ -16,6 +16,7 @@
   "dependencies": {
     "@google-cloud/tasks": "^5.1.0",
     "algoliasearch": "^4.22.1",
+    "crypto": "^1.0.1",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1"
   },

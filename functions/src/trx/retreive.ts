@@ -10,8 +10,8 @@ export const handleTRXRetreive = async (req: Request, res: Response) => {
     .then((doc: any) => {
       const data = doc.data();
       const trak = JSON.parse(data.serialized_trak);
-      return doc.exists
-        ? res.json(trak.TRAK)
+      return doc.exists && trak.TRAK.trak.youtube.url
+        ? res.json(trak.TRAK.trak.youtube.url.replace(/['"]+/g, ""))
         : res.status(404).json({ message: "Not found" });
     });
 };
