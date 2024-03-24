@@ -7,11 +7,13 @@ import { handleTRXRadio } from "./trx/radio";
 import { handleTRXRetreive } from "./trx/retreive";
 import { handleRegisterClient } from "./auth/registerClient";
 import { auth } from "./core";
+import { handleTRXBufferRetreive } from "./trx/retreiveBuffer";
 
 export const app = express();
 
 app.get("/register/:clientId", handleRegisterClient);
 app.get("/trx/music/:id", auth, handleTRXRetreive);
+app.post("/trx/music/buffer", handleTRXBufferRetreive);
 app.get("/trx/music/search/:query", auth, handleTRXSearch);
 app.post("/trx/music/radio", auth, handleTRXRadio);
 
