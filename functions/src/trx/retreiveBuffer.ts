@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { fbFirestore } from "../core";
 
 export const handleTRXBufferRetreive = async (req: Request, res: Response) => {
-  const isrcBuffer: any[] = req.body.buffer;
+  const isrcBuffer: any[] = req.body;
   console.log("🚀 ~ handleTRXBufferRetreive ~ isrcBuffer:", isrcBuffer);
 
   const buffer = await Promise.all(

@@ -12,7 +12,7 @@ import { handleTRXBufferRetreive } from "./trx/retreiveBuffer";
 export const app = express();
 
 app.get("/register/:clientId", handleRegisterClient);
-app.get("/trx/music/:id", auth, handleTRXRetreive);
+app.get("/trx/music/:id", handleTRXRetreive);
 app.post("/trx/music/buffer", handleTRXBufferRetreive);
 app.get("/trx/music/search/:query", auth, handleTRXSearch);
 app.post("/trx/music/radio", auth, handleTRXRadio);
