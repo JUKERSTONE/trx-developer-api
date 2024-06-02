@@ -13,10 +13,11 @@ export const handleTRXSearch = async (req: Request, res: Response) => {
   await index.search(query).then(({ hits }) => {
     results = [];
     hits.forEach((hit: any) => {
+      const isrc = hit.isrc;
       const trak = JSON.parse(hit.serialized_trak);
-      results.push(trak.TRAK);
+      results.push({ ...trak.TRAK.trak, isrc });
     });
   });
 
-  return res.json({ results });
+  return res.json(results);
 };
