@@ -14,7 +14,7 @@ export const app = express();
 app.get("/register/:clientId", handleRegisterClient);
 app.get("/trx/music/:id", handleTRXRetreive);
 app.post("/trx/music/buffer", handleTRXBufferRetreive);
-app.get("/trx/music/search/:query", auth, handleTRXSearch);
+app.get("/trx/music/search/:query", handleTRXSearch);
 app.post("/trx/music/radio", auth, handleTRXRadio);
 
 exports.TRX_DEVELOPER = functions.region("europe-west1").https.onRequest(app);
